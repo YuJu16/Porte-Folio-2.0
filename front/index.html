@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julia GARI - Portfolio</title>
+    <meta name="description" content="Portfolio de Julia GARI, étudiante en 3ème année d'informatique spécialisée en développement web">
+    
+    <!-- Polices -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/icon/icon_sans_font.png">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav__container">
+                <!-- Logo -->
+                <div class="nav__logo">
+                    <img src="assets/icon/icon_sans_font.png" alt="Logo Julia GARI" class="nav__logo-img">
+                </div>
+                
+                <!-- Navigation Menu -->
+                <ul class="nav__menu">
+                    <li class="nav__item">
+                        <a href="#about" class="nav__link">À propos</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#skills" class="nav__link">Mes compétences</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#projects" class="nav__link">Mes projets</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#education" class="nav__link">Diplôme</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#experience" class="nav__link">Expérience Professionnelle</a>
+                    </li>
+                    <li class="nav__item">
+                        <a href="#contact" class="nav__link">Me contacter</a>
+                    </li>
+                </ul>
+                
+                <!-- Theme Toggle -->
+                <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
+                    <span class="theme-toggle__icon"></span>
+                </button>
+                
+                <!-- Mobile Menu Button -->
+                <button class="nav__toggle" id="nav-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="hero__container">
+                <div class="hero__content">
+                    <h1 class="hero__title">Julia Gari</h1>
+                    <p class="hero__subtitle">
+                        Etudiante en 3ème année d'Informatique spécialisé en branche développement
+                    </p>
+                </div>
+                
+                <!-- Decorative Butterflies -->
+                <div class="hero__decorations">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--1">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--2">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--3">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--4">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--5">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--6">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--7">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--8">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--9">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--10">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--11">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--12">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--13">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--14">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--15">
+                    <img src="assets/img/butterflyheader.png" alt="Papillon" class="butterfly butterfly--16">
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section__title">
+                    <span class="section__icon">🦋</span>
+                    À Propos
+                </h2>
+                
+                <div class="about__content">
+                    <!-- Profile Image -->
+                    <div class="about__image-container">
+                        <img src="assets/img/personnage.png" alt="Julia GARI" class="about__image">
+                    </div>
+                    
+                    <!-- About Tabs -->
+                    <div class="about__tabs">
+                        <div class="tabs__nav">
+                            <button class="tab__btn tab__btn--active" data-tab="qui-suis-je">Qui suis-je ?</button>
+                            <button class="tab__btn" data-tab="soft-skills">Soft skills</button>
+                            <button class="tab__btn" data-tab="langues">Langues</button>
+                            <button class="tab__btn" data-tab="passions">Passions</button>
+                        </div>
+                        
+                        <div class="tabs__content">
+                            <div class="tab__content tab__content--active" id="qui-suis-je">
+                                <div class="about__text-bubble">
+                                    <p>Salut, moi c'est <strong>Julia</strong> ! J'ai 22 ans et je suis en <strong>3e année d'informatique</strong> à Ynov Paris Campus, où je me spécialise en <strong>développement</strong>.</p>
+                                    
+                                    <p>Depuis toujours, j'aime <strong>créer et imaginer</strong> : donner forme à des idées, transformer un concept en quelque chose de concret et visuel. C'est pour ça que je me dirige vers le <strong>développement web</strong> : un domaine qui me permet de mélanger ma <strong>créativité</strong> et mes compétences techniques.</p>
+                                    
+                                    <p>J'adore concevoir des projets qui racontent une histoire, avec une <strong>identité visuelle</strong> forte et une expérience utilisateur agréable (la DA de ce site en est déjà un petit exemple **).</p>
+                                    
+                                    <p>Mon ambition est de devenir développeuse web et de continuer à évoluer dans un univers où je peux allier <strong>design, esthétique et technique</strong>, tout en apprenant et en innovant chaque jour.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="tab__content" id="soft-skills">
+                                <div class="about__text-bubble">
+                                    <h3>Mes qualités personnelles</h3>
+                                    <ul class="soft-skills__list">
+                                        <li>Créativité et sens artistique</li>
+                                        <li>Persévérance et détermination</li>
+                                        <li>Travail en équipe</li>
+                                        <li>Curiosité et apprentissage continu</li>
+                                        <li>Attention aux détails</li>
+                                        <li>Gestion du stress</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <div class="tab__content" id="langues">
+                                <div class="about__text-bubble">
+                                    <h3>Langues parlées</h3>
+                                    <div class="languages__list">
+                                        <div class="language__item">
+                                            <span class="language__name">Français</span>
+                                            <span class="language__level">Natif</span>
+                                        </div>
+                                        <div class="language__item">
+                                            <span class="language__name">Anglais</span>
+                                            <span class="language__level">Intermédiaire (B2)</span>
+                                        </div>
+                                        <div class="language__item">
+                                            <span class="language__name">Espagnol</span>
+                                            <span class="language__level">Débutant (A2)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="tab__content" id="passions">
+                                <div class="about__text-bubble">
+                                    <h3>Mes passions</h3>
+                                    <ul class="passions__list">
+                                        <li>🎨 Design graphique et UI/UX</li>
+                                        <li>📚 Lecture de mangas et romans</li>
+                                        <li>🎮 Jeux vidéo (RPG, simulation)</li>
+                                        <li>🌸 Culture japonaise</li>
+                                        <li>💻 Veille technologique</li>
+                                        <li>📷 Photographie</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills" id="skills">
+            <div class="container">
+                <h2 class="section__title">
+                    <span class="section__icon">🦋</span>
+                    Mes Compétences
+                </h2>
+                
+                <div class="skills__grid">
+                    <!-- Front-End -->
+                    <div class="skill__card">
+                        <div class="skill__header">
+                            <h3 class="skill__title">Front-End</h3>
+                        </div>
+                        <div class="skill__content">
+                            <div class="skill__item">
+                                <strong>Langages :</strong> HTML, CSS, JavaScript
+                            </div>
+                            <div class="skill__item">
+                                <strong>Préprocesseur CSS :</strong> SCSS
+                            </div>
+                            <div class="skill__item">
+                                <strong>Framework CSS :</strong> Bootstrap
+                            </div>
+                            <div class="skill__item">
+                                <strong>Librairie JavaScript :</strong> React.js
+                            </div>
+                            <div class="skill__item">
+                                <strong>Moteur de templating :</strong> Twig
+                            </div>
+                            <div class="skill__item">
+                                <strong>Logiciel de conception :</strong> Figma (pour la création d'interfaces)
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Back-End -->
+                    <div class="skill__card">
+                        <div class="skill__header">
+                            <h3 class="skill__title">Back-End</h3>
+                        </div>
+                        <div class="skill__content">
+                            <div class="skill__item">
+                                <strong>Langages :</strong> JavaScript (Node.js), Python, PHP, Java, C#, Go
+                            </div>
+                            <div class="skill__item">
+                                <strong>Framework Node.js :</strong> Express
+                            </div>
+                            <div class="skill__item">
+                                <strong>Gestion des bases de données :</strong> SQL, MongoDB
+                            </div>
+                            <div class="skill__item">
+                                <strong>Sécurité :</strong> Hachage de mots de passe
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Bases de Données -->
+                    <div class="skill__card">
+                        <div class="skill__header">
+                            <h3 class="skill__title">Bases de Données</h3>
+                        </div>
+                        <div class="skill__content">
+                            <div class="skill__item">
+                                <strong>Relationnelle (SQL) :</strong> Conception et gestion
+                            </div>
+                            <div class="skill__item">
+                                <strong>NoSQL :</strong> MongoDB
+                            </div>
+                            <div class="skill__item">
+                                <strong>Format de données :</strong> JSON
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Outils & Méthodes -->
+                    <div class="skill__card">
+                        <div class="skill__header">
+                            <h3 class="skill__title">Outils & Méthodes</h3>
+                        </div>
+                        <div class="skill__content">
+                            <div class="skill__item">
+                                <strong>Gestion de version :</strong> Git
+                            </div>
+                            <div class="skill__item">
+                                <strong>Environnement de développement (IDE) :</strong> Visual Studio Code
+                            </div>
+                            <div class="skill__item">
+                                <strong>Architecture :</strong> Développement Full-Stack (Front-end + Back-end)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section class="projects" id="projects">
+            <div class="container">
+                <h2 class="section__title">
+                    <span class="section__icon">🦋</span>
+                    Mes Projets
+                </h2>
+                
+                <div class="projects__tabs">
+                    <button class="project__tab project__tab--active">Portfolio Personnel (Beta)</button>
+                    <button class="project__tab">Hikari Manga</button>
+                    <button class="project__tab">Base de données SQL pour e-commerce</button>
+                    <button class="project__tab">Forum Santé</button>
+                    <button class="project__tab">Jeu Survival - JSlam</button>
+                    <button class="project__tab">Groupie Tracker</button>
+                    <button class="project__tab">Portfolio</button>
+                </div>
+                
+                <div class="projects__content">
+                    <div class="project__details project__details--active">
+                        <h3 class="project__title">Portfolio Personnel (Beta)</h3>
+                        <p class="project__description">
+                            Conception et réalisation de mon premier site web vitrine pour présenter mon parcours et mes projets.
+                        </p>
+                        <div class="project__context">
+                            <strong>Contexte :</strong> Projet personnel réalisé en autonomie pour appliquer l'ensemble de la chaîne de création web, de la maquette au développement front-end.
+                        </div>
+                        <div class="project__process">
+                            <strong>Processus :</strong>
+                            <ul>
+                                <li><strong>Conception UI/UX :</strong> Création d'une maquette visuelle et structurée sur Figma pour définir l'expérience utilisateur.</li>
+                                <li><strong>Intégration :</strong> Développement front-end en HTML5 (structure sémantique) et CSS3 (style et responsive design).</li>
+                            </ul>
+                        </div>
+                        <div class="project__tech">
+                            <strong>Réalisation technique :</strong>
+                            <ul>
+                                <li>Design responsive s'adaptant parfaitement au desktop.</li>
+                                <li>Code propre et bien structuré pour une maintenance facile.</li>
+                            </ul>
+                        </div>
+                        <div class="project__skills">
+                            <strong>Compétences mobilisées :</strong> Design d'interface (Figma), Intégration HTML/CSS, Responsive Design.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education" id="education">
+            <div class="container">
+                <h2 class="section__title">
+                    <span class="section__icon">🦋</span>
+                    Diplômes
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content">
+                            <span class="timeline__year">2019</span>
+                            <h3 class="timeline__title">Brevet des Collèges</h3>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content timeline__content--left">
+                            <span class="timeline__year">2019 - 2022</span>
+                            <h3 class="timeline__title">Baccalauréat Professionnel Gestion-Administration</h3>
+                            <p class="timeline__subtitle">Lycée Professionnel Gustave Eiffel</p>
+                            <p class="timeline__description">Formation centrée sur la gestion, l'organisation administrative et la relation client.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content">
+                            <span class="timeline__year">2022 - 2023</span>
+                            <h3 class="timeline__title">Bachelor 1 en 2D et Illustration</h3>
+                            <p class="timeline__subtitle">YNOV Campus Paris</p>
+                            <p class="timeline__description">Initiation aux techniques de création graphique, d'illustration et de design.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content timeline__content--left">
+                            <span class="timeline__year">2024 - 2025</span>
+                            <h3 class="timeline__title">Bachelor 3 Informatique (en cours)</h3>
+                            <p class="timeline__subtitle">YNOV Campus Paris</p>
+                            <p class="timeline__description">Spécialisation en développement.</p>
+                            <p class="timeline__note">→ Préparation d'un Mastère en Développement Full-Stack à la suite de cette année.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="experience" id="experience">
+            <div class="container">
+                <h2 class="section__title">
+                    <span class="section__icon">🦋</span>
+                    Expérience Professionnelle
+                </h2>
+                
+                <div class="timeline">
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content">
+                            <span class="timeline__year">2019</span>
+                            <h3 class="timeline__title">Stage de Découverte</h3>
+                            <p class="timeline__subtitle">Cabinet de stomatologie</p>
+                            <p class="timeline__description">Découverte des métiers de l'assistanat médical et de la gestion d'un cabinet.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content timeline__content--left">
+                            <span class="timeline__year">2020 - 2022</span>
+                            <h3 class="timeline__title">Stage - Accueil et Gestion Administrative</h3>
+                            <p class="timeline__subtitle">Clinique privée Blomet</p>
+                            <div class="timeline__description">
+                                <p>Accueil et prise en charge des patients dans un environnement médical exigeant.</p>
+                                <ul>
+                                    <li>Réception physique et téléphonique des patients.</li>
+                                    <li>Gestion et archivage des dossiers patients avec une grande confidentialité.</li>
+                                    <li>Prise de rendez-vous et support administratif à l'équipe médicale.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content">
+                            <span class="timeline__year">2022</span>
+                            <h3 class="timeline__title">Conseillère de Vente</h3>
+                            <p class="timeline__subtitle">KIKO MILANO</p>
+                            <div class="timeline__description">
+                                <p>Gestion de la relation client et participation active à la dynamique commerciale du point de vente.</p>
+                                <ul>
+                                    <li>Encaissement et gestion de caisse avec rigueur.</li>
+                                    <li>Conseil de la clientèle et mise en valeur des produits.</li>
+                                    <li>Contribution à une augmentation des ventes.</li>
+                                    <li>Merchandising et mise en valeur des produits.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline__item">
+                        <div class="timeline__marker"></div>
+                        <div class="timeline__content timeline__content--left">
+                            <span class="timeline__year">Juin-Juillet 2025</span>
+                            <h3 class="timeline__title">Stage - Développeuse Front-End</h3>
+                            <p class="timeline__subtitle">Maison éditoriale</p>
+                            <div class="timeline__description">
+                                <p>Refonte de l'interface du site web pour moderniser l'image de la maison éditoriale et améliorer l'expérience utilisateur.</p>
+                                <ul>
+                                    <li>Conception de maquettes sur Figma en collaboration avec l'équipe.</li>
+                                    <li>Développement front-end en HTML, CSS et JavaScript pour un site responsive et moderne.</li>
+                                    <li>Intégration des contenus et optimisation des performances.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="contact" id="contact">
+            <div class="container">
+                <h2 class="section__title">
+                    <span class="section__icon">🦋</span>
+                    Me contacter
+                </h2>
+                
+                <div class="contact__content">
+                    <div class="contact__info">
+                        <h3>Parlons de vos projets !</h3>
+                        <p>Je suis toujours intéressée par de nouveaux défis et collaborations. N'hésitez pas à me contacter pour échanger sur vos projets ou opportunités.</p>
+                        
+                        <div class="contact__methods">
+                            <a href="mailto:julia.gari@ynov.com" class="contact__method">
+                                <i class="icon-email"></i>
+                                <span>julia.gari@ynov.com</span>
+                            </a>
+                            <a href="https://linkedin.com/in/julia-gari" class="contact__method" target="_blank">
+                                <i class="icon-linkedin"></i>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://github.com/YuJu16" class="contact__method" target="_blank">
+                                <i class="icon-github"></i>
+                                <span>GitHub</span>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <form class="contact__form" id="contact-form">
+                        <div class="form__group">
+                            <label for="name" class="form__label">Nom</label>
+                            <input type="text" id="name" name="name" class="form__input" required>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="email" class="form__label">Email</label>
+                            <input type="email" id="email" name="email" class="form__input" required>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="subject" class="form__label">Sujet</label>
+                            <input type="text" id="subject" name="subject" class="form__input" required>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="message" class="form__label">Message</label>
+                            <textarea id="message" name="message" class="form__textarea" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form__submit">
+                            <span>Envoyer le message</span>
+                            <i class="icon-send"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__text">
+                    <p>&copy; 2025 Julia GARI. Tous droits réservés.</p>
+                    <p>Conçu et développé avec 💖 et beaucoup de ☕</p>
+                </div>
+                
+                <div class="footer__links">
+                    <a href="#" class="footer__link">Mentions légales</a>
+                    <a href="#" class="footer__link">Politique de confidentialité</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/theme.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

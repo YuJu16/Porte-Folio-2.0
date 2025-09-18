@@ -1,0 +1,300 @@
+// ================================
+// VARIABLES GLOBALES
+// ================================
+
+// Polices
+$font-primary: 'Campton', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+$font-heading: 'Genty Demo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+// Couleurs de base
+$white: #ffffff;
+$black: #000000;
+
+// Dégradés principaux (basés sur la maquette)
+$gradient-hero-light: linear-gradient(135deg, #FF99D0 1%, #FF96E0 51%, #FFEA98 100%);
+$gradient-hero-dark: linear-gradient(135deg, #8b4d8f 0%, #d4a574 100%);
+
+// Couleurs pour le mode Light
+$light-colors: (
+  // Backgrounds
+  bg-primary: #ffffff,
+  bg-secondary: #f8f9fa,
+  bg-tertiary: #f1f3f4,
+  bg-card: #ffffff,
+  bg-overlay: rgba(255, 255, 255, 0.95),
+  
+  // Textes
+  text-primary: #2c3e50,
+  text-secondary: #5a6c7d,
+  text-muted: #8b9dc3,
+  text-inverse: #ffffff,
+  
+  // Accents
+  accent-primary: #ff69b4,
+  accent-secondary: #ffa500,
+  accent-tertiary: #ff8fab,
+  
+  // Bordures
+  border-light: #e9ecef,
+  border-medium: #dee2e6,
+  border-strong: #ced4da,
+  
+  // États
+  success: #28a745,
+  warning: #ffc107,
+  error: #dc3545,
+  info: #17a2b8,
+  
+  // Ombres
+  shadow-light: rgba(0, 0, 0, 0.05),
+  shadow-medium: rgba(0, 0, 0, 0.1),
+  shadow-strong: rgba(0, 0, 0, 0.2),
+  
+  // Dégradé hero
+  gradient-hero: $gradient-hero-light
+);
+
+// Couleurs pour le mode Dark
+$dark-colors: (
+  // Backgrounds
+  bg-primary: #1a1a1a,
+  bg-secondary: #2d2d2d,
+  bg-tertiary: #404040,
+  bg-card: #2d2d2d,
+  bg-overlay: rgba(26, 26, 26, 0.95),
+  
+  // Textes
+  text-primary: #ffffff,
+  text-secondary: #b8c5d1,
+  text-muted: #8b9dc3,
+  text-inverse: #2c3e50,
+  
+  // Accents
+  accent-primary: #ff69b4,
+  accent-secondary: #ffa500,
+  accent-tertiary: #ff8fab,
+  
+  // Bordures
+  border-light: #404040,
+  border-medium: #535353,
+  border-strong: #666666,
+  
+  // États
+  success: #34d058,
+  warning: #ffab00,
+  error: #f85149,
+  info: #58a6ff,
+  
+  // Ombres
+  shadow-light: rgba(0, 0, 0, 0.2),
+  shadow-medium: rgba(0, 0, 0, 0.3),
+  shadow-strong: rgba(0, 0, 0, 0.5),
+  
+  // Dégradé hero
+  gradient-hero: $gradient-hero-dark
+);
+
+// Espacements
+$spacing: (
+  xs: 0.25rem,    // 4px
+  sm: 0.5rem,     // 8px
+  md: 1rem,       // 16px
+  lg: 1.5rem,     // 24px
+  xl: 2rem,       // 32px
+  2xl: 3rem,      // 48px
+  3xl: 4rem,      // 64px
+  4xl: 6rem,      // 96px
+  5xl: 8rem       // 128px
+);
+
+// Tailles de police
+$font-sizes: (
+  xs: 0.75rem,    // 12px
+  sm: 0.875rem,   // 14px
+  base: 1rem,     // 16px
+  lg: 1.125rem,   // 18px
+  xl: 1.25rem,    // 20px
+  2xl: 1.5rem,    // 24px
+  3xl: 1.875rem,  // 30px
+  4xl: 2.25rem,   // 36px
+  5xl: 3rem,      // 48px
+  6xl: 3.75rem,   // 60px
+  7xl: 4.5rem     // 72px
+);
+
+// Épaisseurs de police
+$font-weights: (
+  light: 300,
+  normal: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700
+);
+
+// Rayons de bordure
+$border-radius: (
+  none: 0,
+  sm: 0.25rem,    // 4px
+  md: 0.375rem,   // 6px
+  lg: 0.5rem,     // 8px
+  xl: 0.75rem,    // 12px
+  2xl: 1rem,      // 16px
+  3xl: 1.5rem,    // 24px
+  full: 9999px
+);
+
+// Points de rupture responsive
+$breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  2xl: 1400px
+);
+
+// Z-index
+$z-index: (
+  dropdown: 1000,
+  sticky: 1020,
+  fixed: 1030,
+  modal-backdrop: 1040,
+  modal: 1050,
+  popover: 1060,
+  tooltip: 1070
+);
+
+// Transitions
+$transitions: (
+  fast: 0.15s ease-in-out,
+  normal: 0.3s ease-in-out,
+  slow: 0.5s ease-in-out
+);
+
+// Container max-width
+$container-max-width: 1200px;
+
+// ================================
+// MIXINS UTILITAIRES
+// ================================
+
+// Mixin pour accéder aux couleurs selon le thème
+@function color($name, $theme: 'light') {
+  @if $theme == 'light' {
+    @return map-get($light-colors, $name);
+  } @else {
+    @return map-get($dark-colors, $name);
+  }
+}
+
+// Mixin pour les espacements
+@function spacing($size) {
+  @return map-get($spacing, $size);
+}
+
+// Mixin pour les tailles de police
+@function font-size($size) {
+  @return map-get($font-sizes, $size);
+}
+
+// Mixin pour les épaisseurs de police
+@function font-weight($weight) {
+  @return map-get($font-weights, $weight);
+}
+
+// Mixin pour les rayons de bordure
+@function border-radius($size) {
+  @return map-get($border-radius, $size);
+}
+
+// Mixin pour les media queries
+@mixin media($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+
+// Mixin pour les transitions
+@mixin transition($property: all, $speed: normal) {
+  $duration: map-get($transitions, $speed);
+  transition: $property $duration;
+}
+
+// Mixin pour centrer un élément
+@mixin center-absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Mixin pour un conteneur responsive
+@mixin container {
+  width: 100%;
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding: 0 spacing(lg);
+  
+  @include media(md) {
+    padding: 0 spacing(xl);
+  }
+}
+
+// Mixin pour les cartes avec ombre
+@mixin card-shadow($theme: 'light') {
+  @if $theme == 'light' {
+    box-shadow: 0 4px 6px color(shadow-light), 
+                0 1px 3px color(shadow-medium);
+  } @else {
+    box-shadow: 0 4px 6px color(shadow-light, 'dark'), 
+                0 1px 3px color(shadow-medium, 'dark');
+  }
+}
+
+// Mixin pour les boutons
+@mixin button-reset {
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+// Mixin pour masquer visuellement (accessibilité)
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Mixin pour le texte avec ellipsis
+@mixin text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Mixin pour les animations d'apparition
+@mixin fade-in($duration: 0.5s, $delay: 0s) {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp $duration ease-out $delay forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
