@@ -104,7 +104,8 @@ class AnimationManager {
     }
     
     setupCardHoverEffects() {
-        const cards = document.querySelectorAll('.skill__card, .timeline__content');
+        // Exclure les timeline__content des effets hover
+        const cards = document.querySelectorAll('.skill__card');
         
         cards.forEach(card => {
             card.addEventListener('mouseenter', (e) => {

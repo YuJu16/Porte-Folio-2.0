@@ -1,5 +1,5 @@
 /**
- * Script principal - Orchestrateur de toutes les fonctionnalités
+ * Script principal - Version nettoyée et corrigée
  */
 class PortfolioApp {
     constructor() {
@@ -10,8 +10,7 @@ class PortfolioApp {
     }
     
     init() {
-        // Afficher un loader si nécessaire
-        this.showLoader();
+        console.log('Initialisation de l\'application...');
         
         // Initialiser les composants
         this.initComponents();
@@ -19,49 +18,13 @@ class PortfolioApp {
         // Setup des événements globaux
         this.setupGlobalEvents();
         
-        // Setup du formulaire de contact
-        this.setupContactForm();
-        
         // Setup des Easter eggs
         this.setupEasterEggs();
         
-        // Finaliser le chargement
-        this.finishLoading();
-    }
-    
-    showLoader() {
-        // Créer un loader simple
-        const loader = document.createElement('div');
-        loader.id = 'app-loader';
-        loader.innerHTML = `
-            <div class="loader">
-                <div class="loader__butterfly">
-                    <img src="assets/img/Black Butterflies.gif" alt="Loading..." class="butterfly-gif">
-                </div>
-                <div class="loader__text">Chargement du portfolio...</div>
-            </div>
-        `;
-        loader.style.cssText = `
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #FF99D0 1%, #FF96E0 51%, #FFEA98 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            color: white;
-            font-family: inherit;
-        `;
-        
-        document.body.appendChild(loader);
+        console.log('Application initialisée avec succès');
     }
     
     initComponents() {
-        // Les composants sont déjà initialisés dans leurs fichiers respectifs
-        // Ici on peut ajouter des références si nécessaire
         this.components.theme = window.themeManager;
     }
     
@@ -69,13 +32,11 @@ class PortfolioApp {
         // Gestion des erreurs JavaScript
         window.addEventListener('error', (e) => {
             console.error('Erreur JavaScript:', e.error);
-            this.handleError(e.error);
         });
         
         // Gestion des erreurs de promesses
         window.addEventListener('unhandledrejection', (e) => {
             console.error('Promesse rejetée:', e.reason);
-            this.handleError(e.reason);
         });
         
         // Gestion du redimensionnement
@@ -102,143 +63,7 @@ class PortfolioApp {
         });
     }
     
-    setupContactForm() {
-        const contactForm = document.getElementById('contact-form');
-        
-        if (contactForm) {
-            contactForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                this.handleContactSubmit(e.target);
-            });
-            
-            // Validation en temps réel
-            const inputs = contactForm.querySelectorAll('input, textarea');
-            inputs.forEach(input => {
-                input.addEventListener('blur', () => {
-                    this.validateField(input);
-                });
-                
-                input.addEventListener('input', () => {
-                    this.clearFieldError(input);
-                });
-            });
-        }
-    }
-    
-    handleContactSubmit(form) {
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        // Validation
-        if (!this.validateContactForm(data)) {
-            return;
-        }
-        
-        // Simuler l'envoi du formulaire
-        this.showNotification('Message envoyé avec succès ! Je vous répondrai rapidement.', 'success');
-        form.reset();
-        
-        // Ici vous pouvez ajouter l'envoi réel via une API
-        // this.sendEmailToAPI(data);
-    }
-    
-    validateContactForm(data) {
-        let isValid = true;
-        
-        // Validation de l'email
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(data.email)) {
-            this.showFieldError('email', 'Veuillez entrer une adresse email valide');
-            isValid = false;
-        }
-        
-        // Validation des champs obligatoires
-        const requiredFields = ['name', 'email', 'subject', 'message'];
-        requiredFields.forEach(field => {
-            if (!data[field] || data[field].trim().length < 2) {
-                this.showFieldError(field, 'Ce champ est obligatoire (minimum 2 caractères)');
-                isValid = false;
-            }
-        });
-        
-        return isValid;
-    }
-    
-    validateField(input) {
-        const value = input.value.trim();
-        
-        if (input.hasAttribute('required') && value.length < 2) {
-            this.showFieldError(input.name, 'Ce champ est obligatoire (minimum 2 caractères)');
-            return false;
-        }
-        
-        if (input.type === 'email') {
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (value && !emailRegex.test(value)) {
-                this.showFieldError(input.name, 'Veuillez entrer une adresse email valide');
-                return false;
-            }
-        }
-        
-        this.clearFieldError(input);
-        return true;
-    }
-    
-    showFieldError(fieldName, message) {
-        const field = document.querySelector(`[name="${fieldName}"]`);
-        if (!field) return;
-        
-        field.classList.add('error');
-        
-        // Retirer l'ancien message d'erreur
-        const existingError = field.parentNode.querySelector('.field-error');
-        if (existingError) {
-            existingError.remove();
-        }
-        
-        // Ajouter le nouveau message
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'field-error';
-        errorDiv.textContent = message;
-        errorDiv.style.cssText = `
-            color: #dc3545;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-        `;
-        
-        field.parentNode.appendChild(errorDiv);
-    }
-    
-    clearFieldError(input) {
-        input.classList.remove('error');
-        const errorDiv = input.parentNode.querySelector('.field-error');
-        if (errorDiv) {
-            errorDiv.remove();
-        }
-    }
-    
     setupEasterEggs() {
-        // Konami Code (↑↑↓↓←→←→BA)
-        let konamiCode = [];
-        const konamiSequence = [
-            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-            'KeyB', 'KeyA'
-        ];
-        
-        document.addEventListener('keydown', (e) => {
-            konamiCode.push(e.code);
-            
-            if (konamiCode.length > konamiSequence.length) {
-                konamiCode.shift();
-            }
-            
-            if (konamiCode.join(',') === konamiSequence.join(',')) {
-                this.activateEasterEgg();
-                konamiCode = [];
-            }
-        });
-        
         // Click sur le logo 5 fois
         const logo = document.querySelector('.nav__logo-img');
         if (logo) {
@@ -263,49 +88,224 @@ class PortfolioApp {
         }
     }
     
-    activateEasterEgg() {
-        // Ajouter une pluie de papillons
-        const butterflyRain = () => {
-            for (let i = 0; i < 20; i++) {
-                setTimeout(() => {
-                    this.createFallingButterfly();
-                }, i * 200);
-            }
-        };
-        
-        butterflyRain();
-        this.showNotification('🦋 Easter Egg activé ! Pluie de papillons ! 🦋', 'info');
-    }
-    
-    createFallingButterfly() {
-        const butterfly = document.createElement('div');
-        butterfly.textContent = '🦋';
-        butterfly.style.cssText = `
-            position: fixed;
-            top: -50px;
-            left: ${Math.random() * window.innerWidth}px;
-            font-size: ${20 + Math.random() * 30}px;
-            z-index: 1000;
-            pointer-events: none;
-            animation: fall ${3 + Math.random() * 2}s linear forwards;
-        `;
-        
-        document.body.appendChild(butterfly);
-        
-        setTimeout(() => {
-            butterfly.remove();
-        }, 5000);
-    }
-    
     activateSpecialMode() {
         document.body.classList.add('party-mode');
         this.showNotification('🎉 Mode fête activé ! 🎉', 'success');
         
-        // Retirer le mode après 10 secondes
         setTimeout(() => {
             document.body.classList.remove('party-mode');
         }, 10000);
     }
+    
+    handleKeyboardShortcuts(e) {
+        // Ctrl/Cmd + D pour toggle dark mode
+        if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
+            e.preventDefault();
+            if (this.components.theme) {
+                this.components.theme.toggleTheme();
+            }
+        }
+        
+        // Escape pour fermer les modaux ou menus
+        if (e.key === 'Escape') {
+            const openMenu = document.querySelector('.nav__menu.active');
+            if (openMenu) {
+                openMenu.classList.remove('active');
+            }
+        }
+    }
+    
+    handleResize() {
+        console.log('Window resized');
+    }
+    
+    onPageHidden() {
+        document.body.classList.add('page-hidden');
+    }
+    
+    onPageVisible() {
+        document.body.classList.remove('page-hidden');
+    }
+    
+    showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        notification.className = `notification notification--${type}`;
+        notification.textContent = message;
+        notification.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 0.5rem;
+            z-index: 1050;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            animation: slideInRight 0.3s ease-out;
+        `;
+        
+        document.body.appendChild(notification);
+        
+        setTimeout(() => {
+            notification.style.animation = 'slideOutRight 0.3s ease-in forwards';
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }, 4000);
+    }
+}
+
+// Gestion des images papillons pour le thème
+function updateButterflyIcons() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    
+    // Mettre à jour les icônes de section
+    document.querySelectorAll('.section__icon-img').forEach(img => {
+        if (img.getAttribute('data-dark')) {
+            img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
+        }
+    });
+    
+    // Mettre à jour les papillons de la timeline
+    document.querySelectorAll('.timeline__butterfly').forEach(img => {
+        if (img.getAttribute('data-dark')) {
+            img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
+        }
+    });
+}
+
+// Styles additionnels
+const additionalStyles = `
+<style>
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+.party-mode {
+    animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.page-hidden .butterfly {
+    animation-play-state: paused;
+}
+</style>
+`;
+
+document.head.insertAdjacentHTML('beforeend', additionalStyles);
+
+// Initialiser l'application
+document.addEventListener('DOMContentLoaded', () => {
+    window.portfolioApp = new PortfolioApp();
+    
+    // Initialiser la gestion des papillons
+    updateButterflyIcons();
+    
+    // Écouter les changements de thème
+    document.addEventListener('themeChanged', updateButterflyIcons);
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            setTimeout(updateButterflyIcons, 10);
+        });
+    }
+});
+}
+
+// Styles additionnels
+const additionalStyles = `
+<style>
+.loader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.loader__butterfly {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: butterflybounce 3s ease-in-out infinite;
+}
+
+.butterfly-gif {
+    width: 120px;
+    height: auto;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+}
+
+.loader__text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 300px;
+}
+
+@keyframes butterflybounce {
+    0%, 100% { transform: translateY(0px) scale(1); }
+    50% { transform: translateY(-15px) scale(1.05); }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOutRight {
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+@keyframes fadeOut {
+    to { opacity: 0; }
+}
+
+.party-mode {
+    animation: rainbow 2s linear infinite;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+.page-hidden .butterfly {
+    animation-play-state: paused;
+}
+</style>
+`;
+
+document.head.insertAdjacentHTML('beforeend', additionalStyles);
+
+// Initialiser l'application
+document.addEventListener('DOMContentLoaded', () => {
+    window.portfolioApp = new PortfolioApp();
+    
+    // Initialiser la gestion des papillons
+    updateButterflyIcons();
+    
+    // Écouter les changements de thème
+    document.addEventListener('themeChanged', updateButterflyIcons);
+    
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            setTimeout(updateButterflyIcons, 10);
+        });
+    }
+});
     
     handleKeyboardShortcuts(e) {
         // Ctrl/Cmd + D pour toggle dark mode
@@ -502,14 +502,19 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', function () {
   function updateButterflyIcons() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    // Mettre à jour les icônes de section
     document.querySelectorAll('.section__icon-img').forEach(img => {
-      img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png'; //erreur resolu ! 
+      img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
+    });
+    // Mettre à jour les papillons de la timeline
+    document.querySelectorAll('.timeline__butterfly').forEach(img => {
+      img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
     });
   }
   // Initial update
   updateButterflyIcons();
-  // Listen for theme changes (if your theme switcher triggers an event, adapt here)
-  document.addEventListener('themechange', updateButterflyIcons);
+  // Listen for theme changes
+  document.addEventListener('themeChanged', updateButterflyIcons);
   // Or, if you use a button to toggle theme:
   const themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {

@@ -111,7 +111,7 @@ body {
   --shadow-medium: rgba(0, 0, 0, 0.1);
   --shadow-strong: rgba(0, 0, 0, 0.2);
   
-  --gradient-hero: linear-gradient(135deg, #FF99D0 1%, #FF96E0 51%, #FFEA98 100%);
+  --gradient-hero: linear-gradient(135deg, #ff8fab  1%, #ff69b4 51%,#ffa500 100%);
 }
 
 [data-theme="dark"] {
@@ -138,7 +138,7 @@ body {
   --shadow-medium: rgba(0, 0, 0, 0.3);
   --shadow-strong: rgba(0, 0, 0, 0.5);
   
-  --gradient-hero: linear-gradient(135deg, #FF99D0 1%, #FF96E0 51%, #FFEA98 100%);
+   --gradient-hero: linear-gradient(135deg, #ff8fab  1%, #ff69b4 51%,#ffa500 100%);
 }
 
 /* Utilitaires généraux */
@@ -803,7 +803,6 @@ Papillons décoratifs
 
 .soft-skills__list li::before,
 .passions__list li::before {
-  content: '🦋';
   position: absolute;
   left: 0;
   top: 0.25rem;
@@ -949,10 +948,11 @@ Papillons décoratifs
 }
 
 .project__title {
-  font-family: 'Genty Demo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Campton', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 1.5rem;
   color: var(--accent-primary);
   margin-bottom: 1.5rem;
+  font-weight: 700;
 }
 
 .project__description {
@@ -992,15 +992,16 @@ Papillons décoratifs
 }
 
 /* Timeline (Education & Experience) */
-.education:nth-child(even),
-.experience:nth-child(even) {
+.education,
+.experience {
   background-color: var(--bg-secondary);
 }
 
 .timeline {
   position: relative;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
+  padding: 2rem 0;
 }
 
 .timeline::before {
@@ -1008,21 +1009,16 @@ Papillons décoratifs
   position: absolute;
   top: 0;
   left: 50%;
-  width: 2px;
+  width: 6px;
   height: 100%;
   background-color: var(--accent-primary);
   transform: translateX(-50%);
 }
 
-@media (min-width: 768px) {
-  .timeline::before {
-    left: 50%;
-  }
-}
-
 .timeline__item {
   position: relative;
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
+  width: 100%;
 }
 
 .timeline__item:last-child {
@@ -1031,227 +1027,152 @@ Papillons décoratifs
 
 .timeline__marker {
   position: absolute;
-  top: 1rem;
+  top: 0;
   left: 50%;
-  width: 20px;
-  height: 20px;
-  background-color: var(--accent-primary);
-  border: 4px solid var(--bg-primary);
-  border-radius: 9999px;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;
 }
 
-.timeline__marker::before {
-  content: '🦋';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 12px;
+.timeline__butterfly {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
 }
 
 .timeline__content {
-  background-color: var(--bg-card);
-  border-radius: 0.75rem;
-  padding: 2rem;
-  box-shadow: 0 4px 6px var(--shadow-light);
-  margin-left: 0;
-  margin-right: 0;
+  background-color: transparent;
+  border-radius: 0;
+  padding: 1rem 2rem;
+  box-shadow: none;
+  position: relative;
+  width: 45%;
+  transition: none;
 }
 
-@media (min-width: 768px) {
-  .timeline__content {
-    width: 45%;
-  }
-  
-  .timeline__content--left {
-    margin-left: auto;
-    margin-right: 3rem;
-  }
-  
-  .timeline__content:not(.timeline__content--left) {
-    margin-right: auto;
-    margin-left: 3rem;
-  }
+/* Supprimer complètement les effets hover */
+.timeline__content:hover {
+  transform: none;
+  box-shadow: none;
+  background-color: transparent;
+}
+
+.timeline__content--left {
+  margin-left: auto;
+  margin-right: 5%; /* Marge minimale à droite */
+  text-align: right; /* Aligner le texte à droite */
+}
+
+.timeline__content--right {
+  margin-right: auto;
+  margin-left: 8%;
+}
+
+/* Supprimer les flèches */
+.timeline__content--left::before,
+.timeline__content--right::before {
+  display: none;
 }
 
 .timeline__year {
   display: inline-block;
-  background-color: var(--accent-primary);
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
   color: white;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
   font-size: 0.875rem;
   font-weight: 600;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(255, 105, 180, 0.3);
 }
 
 .timeline__title {
-  font-family: 'Genty Demo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.25rem;
+  font-family: 'Campton', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.375rem;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+  font-weight: 700;
 }
 
 .timeline__subtitle {
   font-weight: 600;
   color: var(--accent-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
 }
 
 .timeline__description {
   color: var(--text-secondary);
-  line-height: 1.6;
-}
-
-.timeline__description ul {
-  margin-top: 0.5rem;
-  padding-left: 1.5rem;
-}
-
-.timeline__description li {
-  margin-bottom: 0.25rem;
+  line-height: 1.7;
+  font-size: 1rem;
 }
 
 .timeline__description p {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 
 .timeline__description p:last-child {
   margin-bottom: 0;
 }
 
-.timeline__note {
-  font-style: italic;
-  color: var(--text-muted);
-  margin-top: 0.5rem;
+.timeline__description ul {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
 }
 
-/* Contact Section */
-.contact {
-  background-color: var(--bg-secondary);
+.timeline__description li {
+  margin-bottom: 0.5rem;
+  position: relative;
 }
 
-.contact__content {
-  display: grid;
-  gap: 6rem;
-  align-items: start;
-}
-
-@media (min-width: 992px) {
-  .contact__content {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-.contact__info h3 {
-  font-family: 'Genty Demo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  font-size: 1.5rem;
-  color: var(--text-primary);
-  margin-bottom: 1.5rem;
-}
-
-.contact__info p {
-  color: var(--text-secondary);
-  margin-bottom: 2rem;
-  line-height: 1.6;
-}
-
-.contact__methods {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-.contact__method {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  color: var(--text-primary);
-  text-decoration: none;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.contact__method:hover {
-  background-color: var(--bg-tertiary);
-}
-
-.contact__method i {
-  font-size: 1.25rem;
+.timeline__description li::marker {
   color: var(--accent-primary);
 }
 
-.contact__form {
-  background-color: var(--bg-card);
-  border-radius: 0.75rem;
-  padding: 3rem;
-  box-shadow: 0 4px 6px var(--shadow-light);
-}
-
-/* Formulaire */
-.form__group {
-  margin-bottom: 1.5rem;
-}
-
-.form__label {
-  display: block;
-  color: var(--text-primary);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.form__input,
-.form__textarea {
-  width: 100%;
+.timeline__note {
+  font-style: italic;
+  color: var(--text-muted);
+  margin-top: 1rem;
   padding: 1rem;
-  border: 1px solid var(--border-medium);
+  background-color: var(--bg-secondary);
   border-radius: 0.5rem;
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-  font-family: inherit;
-  font-size: 1rem;
-  transition: border-color 0.3s ease-in-out;
+  border-left: 4px solid var(--accent-primary);
 }
 
-.form__input:focus,
-.form__textarea:focus {
-  outline: none;
-  border-color: var(--accent-primary);
-}
-
-.form__textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-
-.form__submit {
-  border: none;
-  background: none;
-  padding: 0;
-  margin: 0;
-  font: inherit;
-  cursor: pointer;
-  outline: none;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: white;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: transform 0.3s ease-in-out;
-}
-
-.form__submit:hover {
-  transform: translateY(-2px);
-}
-
-.form__submit i {
-  font-size: 1.125rem;
+/* Responsive pour timeline */
+@media (max-width: 768px) {
+  .timeline::before {
+    left: 30px;
+    width: 4px;
+  }
+  
+  .timeline__marker {
+    left: 30px;
+    width: 32px;
+    height: 32px;
+  }
+  
+  .timeline__butterfly {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .timeline__content {
+    width: calc(100% - 80px);
+    margin-left: 80px !important;
+    margin-right: 0 !important;
+    padding: 0.5rem 1rem;
+  }
 }
 
 /* Footer */
@@ -1329,4 +1250,198 @@ Papillons décoratifs
   .section__title {
     font-size: 1.875rem;
   }
+}
+
+/* Contact Section */
+.contact {
+  background-color: var(--bg-secondary);
+}
+
+.contact__content {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact__info h3 {
+  font-family: 'Campton', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+}
+
+.contact__info p {
+  color: var(--text-secondary);
+  margin-bottom: 3rem;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.contact__cards {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+  .contact__cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+}
+
+.contact__card {
+  background-color: var(--bg-card);
+  border: 2px solid transparent;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px var(--shadow-light);
+}
+
+.contact__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+  transition: height 0.3s ease;
+}
+
+.contact__card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px var(--shadow-medium);
+  border-color: var(--accent-primary);
+}
+
+.contact__card:hover::before {
+  height: 100%;
+  opacity: 0.1;
+}
+
+.contact__card--email:hover {
+  border-color: var(--accent-primary);
+}
+
+.contact__card--linkedin:hover {
+  border-color: #0077B5;
+}
+
+.contact__card--github:hover {
+  border-color: #333;
+}
+
+.contact__card-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 1.5rem auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.contact__card--linkedin .contact__card-icon {
+  background: linear-gradient(135deg, #0077B5, #005582);
+}
+
+.contact__card--github .contact__card-icon {
+  background: linear-gradient(135deg, #333, #555);
+}
+
+.contact__card:hover .contact__card-icon {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(255, 105, 180, 0.3);
+}
+
+.contact__card-icon svg {
+  width: 28px;
+  height: 28px;
+  color: white;
+}
+
+.contact__card-content {
+  position: relative;
+  z-index: 2;
+}
+
+.contact__card-content h4 {
+  font-family: 'Genty Demo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.contact__card-content p {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.contact__card:hover .contact__card-content h4 {
+  color: var(--accent-primary);
+}
+
+/* Animation subtile des cartes */
+@keyframes gentlePulse {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-1px) scale(1.01); }
+}
+
+.contact__card:nth-child(1) {
+  animation: gentlePulse 6s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.contact__card:nth-child(2) {
+  animation: gentlePulse 6s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.contact__card:nth-child(3) {
+  animation: gentlePulse 6s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+/* Responsive pour mobile */
+@media (max-width: 767px) {
+  .contact__cards {
+    gap: 1rem;
+  }
+  
+  .contact__card {
+    padding: 1.5rem;
+  }
+  
+  .contact__card-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .contact__card-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Mode sombre */
+[data-theme="dark"] .contact__card {
+  background-color: var(--bg-card);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .contact__card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
