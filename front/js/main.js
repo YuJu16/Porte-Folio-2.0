@@ -498,3 +498,23 @@ document.head.insertAdjacentHTML('beforeend', additionalStyles);
 document.addEventListener('DOMContentLoaded', () => {
     window.portfolioApp = new PortfolioApp();
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+  function updateButterflyIcons() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.querySelectorAll('.section__icon-img').forEach(img => {
+      img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png'; //erreur resolu ! 
+    });
+  }
+  // Initial update
+  updateButterflyIcons();
+  // Listen for theme changes (if your theme switcher triggers an event, adapt here)
+  document.addEventListener('themechange', updateButterflyIcons);
+  // Or, if you use a button to toggle theme:
+  const themeToggle = document.getElementById('theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function () {
+      setTimeout(updateButterflyIcons, 10);
+    });
+  }
+});
