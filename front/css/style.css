@@ -92,12 +92,10 @@ body {
   --bg-secondary: #f8f9fa;
   --bg-tertiary: #f1f3f4;
   --bg-card: #ffffff;
-  --bg-overlay: rgba(255, 255, 255, 0.95);
   
   --text-primary: #000000;
   --text-secondary: #000000;
   --text-muted: #8b9dc3;
-  --text-inverse: #ffffff;
   
   --accent-primary: #ff69b4;
   --accent-secondary: #ffa500;
@@ -105,13 +103,11 @@ body {
   
   --border-light: #e9ecef;
   --border-medium: #dee2e6;
-  --border-strong: #ced4da;
   
   --shadow-light: rgba(0, 0, 0, 0.05);
   --shadow-medium: rgba(0, 0, 0, 0.1);
-  --shadow-strong: rgba(0, 0, 0, 0.2);
   
-  --gradient-hero: linear-gradient(135deg, #ff8fab  1%, #ff69b4 51%,#ffa500 100%);
+  --gradient-hero: linear-gradient(135deg, #ff8fab 1%, #ff69b4 51%, #ffa500 100%);
 }
 
 [data-theme="dark"] {
@@ -119,12 +115,10 @@ body {
   --bg-secondary: #2d2d2d;
   --bg-tertiary: #404040;
   --bg-card: #2d2d2d;
-  --bg-overlay: rgba(26, 26, 26, 0.95);
   
   --text-primary: #ffffff;
   --text-secondary: #b8c5d1;
   --text-muted: #8b9dc3;
-  --text-inverse: #2c3e50;
   
   --accent-primary: #ff69b4;
   --accent-secondary: #ffa500;
@@ -132,13 +126,11 @@ body {
   
   --border-light: #404040;
   --border-medium: #535353;
-  --border-strong: #666666;
   
   --shadow-light: rgba(0, 0, 0, 0.2);
   --shadow-medium: rgba(0, 0, 0, 0.3);
-  --shadow-strong: rgba(0, 0, 0, 0.5);
   
-   --gradient-hero: linear-gradient(135deg, #ff8fab  1%, #ff69b4 51%,#ffa500 100%);
+  --gradient-hero: linear-gradient(135deg, #ff8fab 1%, #ff69b4 51%, #ffa500 100%);
 }
 
 /* Utilitaires généraux */
@@ -559,132 +551,6 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-Papillons décoratifs
-.butterfly {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  opacity: 0.3;
-  animation: float 8s ease-in-out infinite;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* Papillons du côté gauche - dispersés naturellement */
-/* Papillons du côté gauche UNIQUEMENT - éparpillés mais loin du centre */
-.butterfly--1 {
-  top: 5%;
-  left: -9%;
-  animation-delay: 0s;
-}
-
-.butterfly--2 {
-  top: 45%;
-  left: -40%;
-  animation-delay: 2s;
-}
-
-.butterfly--3 {
-  top: 20%;
-  left: 18%;
-  animation-delay: 4s;
-}
-
-.butterfly--4 {
-  top: 85%;
-  left: 3%;
-  animation-delay: 6s;
-}
-
-.butterfly--5 {
-  top: 65%;
-  left: 15%;
-  animation-delay: 1s;
-}
-
-.butterfly--6 {
-  top: 30%;
-  left: 5%;
-  animation-delay: 3s;
-}
-
-.butterfly--7 {
-  top: 75%;
-  left: 20%;
-  animation-delay: 5s;
-}
-
-.butterfly--8 {
-  top: 55%;
-  left: 8%;
-  animation-delay: 7s;
-}
-
-/* Papillons du côté droit UNIQUEMENT - éparpillés mais loin du centre */
-.butterfly--9 {
-  top: 10%;
-  right: 2%;
-  animation-delay: 1.5s;
-}
-
-.butterfly--10 {
-  top: 40%;
-  right: 15%;
-  animation-delay: 3.5s;
-}
-
-.butterfly--11 {
-  top: 25%;
-  right: 18%;
-  animation-delay: 5.5s;
-}
-
-.butterfly--12 {
-  top: 80%;
-  right: 5%;
-  animation-delay: 7.5s;
-}
-
-.butterfly--13 {
-  top: 60%;
-  right: 12%;
-  animation-delay: 0.5s;
-}
-
-.butterfly--14 {
-  top: 15%;
-  right: 20%;
-  animation-delay: 2.5s;
-}
-
-.butterfly--15 {
-  top: 70%;
-  right: 8%;
-  animation-delay: 4.5s;
-}
-
-.butterfly--16 {
-  top: 50%;
-  right: 3%;
-  animation-delay: 6.5s;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  25% {
-    transform: translateY(-10px) rotate(2deg);
-  }
-  50% {
-    transform: translateY(-5px) rotate(-1deg);
-  }
-  75% {
-    transform: translateY(-15px) rotate(1deg);
-  }
 }
 
 /* Sections avec padding */
@@ -1197,9 +1063,10 @@ Papillons décoratifs
 @media (min-width: 768px) {
   .footer__content {
     padding: 0 2rem;
-    flex-direction: row;
-    justify-content: space-between;
-    text-align: left;
+    flex-direction: column; /* Garder en colonne même en desktop */
+    justify-content: center; /* Centrer au lieu de space-between */
+    align-items: center; /* Centrer horizontalement */
+    text-align: center; /* Garder centré */
   }
 }
 
@@ -1442,10 +1309,6 @@ Papillons décoratifs
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
 }
 
-[data-theme="dark"] .contact__card:hover {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-}
-
 /* Loader avec spinner CSS */
 .loader {
   position: fixed;
@@ -1459,29 +1322,22 @@ Papillons décoratifs
   flex-direction: column;
   background: linear-gradient(120deg, #ffb6e6 0%, #ffb6b9 50%, #fcd581 100%);
 }
-.loader__bg {
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 1;
-  background: inherit;
-}
+
 .loader__content {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
 }
+
 .loader__gif {
   width: 120px;
   height: auto;
   filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
   margin-bottom: 1.5rem;
 }
+
 .loader__text {
   color: white;
   font-size: 1.2rem;
@@ -1489,4 +1345,37 @@ Papillons décoratifs
   text-shadow: 0 1px 3px rgba(0,0,0,0.3);
   margin: 0;
   font-family: 'Campton', 'Inter', sans-serif;
+}
+
+/* Ajout des styles pour le lien GitHub */
+.project__github {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border-light);
+}
+
+.project__github-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--accent-primary);
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  background-color: transparent;
+}
+
+.project__github-link:hover {
+  background-color: var(--accent-primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 105, 180, 0.3);
+}
+
+.project__github-link svg {
+  width: 20px;
+  height: 20px;
 }

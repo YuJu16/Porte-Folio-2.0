@@ -17,13 +17,15 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icon/icon_sans_font.png">
 </head>
-<body>    <div id="loader" class="loader">
+<body>
+    <div id="loader" class="loader">
         <div class="loader__bg"></div>
         <div class="loader__content">
             <img src="assets/img/White Butterflies.gif" alt="Chargement..." class="loader__gif">
             <p class="loader__text">Chargement du portfolio...</p>
         </div>
     </div>
+    
     <!-- Header Navigation -->
     <header class="header">
         <nav class="nav">
@@ -52,27 +54,18 @@
                     <li class="nav__item">
                         <a href="#contact" class="nav__link">Me contacter</a>
                     </li>
-                    <li class="nav__item">
-                        <a href="front/assets/doc/Lettre _de_motivation-JuliaGari.pdf" class="nav__download-link" target="_blank">
-                            <span>Lettre de motivation</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="nav__download-icon" viewBox="0 0 16 16">
-                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-                            </svg>
-                        </a>
-                    </li>
-                    <li class="nav__item">
-                        <a href="front/assets/doc/cv_JuliaGari.pdf" class="nav__download-link" target="_blank">
-                            <span>Mon cv</span>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="nav__download-icon" viewBox="0 0 16 16">
-                                <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-                                <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
-                            </svg>
-                        </a>
-                    </li>
                 </ul>
                 
                 <div class="nav__actions">
+                    <!-- Lien CV -->
+                    <a href="assets/doc/cv_JuliaGari.pdf" class="nav__download-link" target="_blank">
+                        <span>Mon CV</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="nav__download-icon" viewBox="0 0 16 16">
+                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
+                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708z"/>
+                        </svg>
+                    </a>
+                    
                     <!-- Bouton dark/light -->
                     <button class="theme-toggle" id="theme-toggle" aria-label="Changer de thème">
                         <span class="theme-toggle__icon"></span>
@@ -334,35 +327,27 @@
                     <div class="project__details project__details--active">
                         <h3 class="project__title">Portfolio Personnel (Beta)</h3>
                         <p class="project__description">
-                            Site web vitrine interactif présentant mon parcours d'étudiante en informatique et mes projets.👉 Projet de fin d'année (1ère année), réalisé en autonomie.
+                            Création d'un site vitrine pour présenter mon parcours étudiant et ma passion pour l'informatique.
                         </p>
                         <div class="project__context">
-                            <strong>Contexte :</strong> Projet de fin d'année réalisé en autonomie pour démontrer mes compétences techniques et créatives.
+                            <strong>Contexte :</strong> Projet de fin d'année réalisé en autonomie dans le cadre du cursus YDAYS LABO DEV WEB.
                         </div>
                         <div class="project__process">
                             <strong>Processus :</strong>
                             <ul>
-                                <li><strong>• Conception UI/UX :</strong> Interface kawaii avec animations, GIF et personnages manga.</li>
-                                <li><strong>• Intégration :</strong> Développement HTML5 sémantique et CSS3 responsive pour desktop et mobile.</li>
+                                <li><strong>Conception UI/UX</strong> avec une identité visuelle kawaii et professionnelle.</li>
+                                <li><strong>Intégration front-end</strong> en HTML5/CSS3 avec design responsive (desktop & mobile).</li>
                             </ul>
                         </div>
                         <div class="project__tech">
                             <strong>Réalisation technique :</strong>
                             <ul>
-                                <li>Design responsive avec media queries spécifiques.</li>
-                                <li>Code modulaire avec CSS séparé par page et par device.</li>
-                                <li>Intégration d'animations, éléments interactifs et contenus externes.</li>
+                                <li>Navigation fluide et immersive avec éléments interactifs.</li>
+                                <li>Code sémantique, structuré et optimisé.</li>
                             </ul>
-                        </div>                        <div class="project__skills">
-                            <strong>Compétences mobilisées :</strong> UI/UX Design, HTML5, CSS3 avancé, Responsive Design, Intégration multimédia.
                         </div>
-                        <div class="project__featured">
-                            <strong>Projets présentés :</strong>
-                            <ul>
-                                <li>Sécurité informatique (Kali Linux, Nmap, tests de vulnérabilités)</li>
-                                <li>Développement web et applications</li>
-                                <li>Projets créatifs et techniques</li>
-                            </ul>
+                        <div class="project__skills">
+                            <strong>Compétences mobilisées :</strong> UI/UX Design, Intégration HTML/CSS, Responsive Design, Gestion autonome de projet.
                         </div>
                     </div>
 
@@ -607,7 +592,9 @@
                 </div>
             </div>
         </div>
-    </footer>    <!-- Scripts -->
+    </footer>
+
+    <!-- Scripts -->
     <script src="js/loader.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/butterfly-theme.js"></script>
@@ -617,7 +604,20 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+    <script src="js/navigation.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
 </body>
+</html>
+    <script src="js/theme.js"></script>
+    <script src="js/butterfly-theme.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/animations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
 </html>
     <script src="js/theme.js"></script>
     <script src="js/butterfly-theme.js"></script>

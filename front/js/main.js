@@ -1,5 +1,5 @@
 /**
- * Script principal - Gestion des thèmes et animations
+ * Script principal - Gestion des thèmes et fonctionnalités de base
  */
 
 // Gestion des images papillons pour le thème
@@ -15,279 +15,280 @@ function updateButterflyIcons() {
     
     // Mettre à jour les papillons de la timeline
     document.querySelectorAll('.timeline__butterfly').forEach(img => {
-        if (img.getAttribute('data-dark')) {
-            img.src = isDark ? img.getAttribute('data-dark') : img.getAttribute('src').replace('butterflylight.png', 'butterflyPins.png');
-        }
+        img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
     });
 }
 
-// Initialisation au chargement de la page
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Initialisation des papillons pour le thème');
-    
-    // Mettre à jour les icônes immédiatement
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    // Gestion des papillons pour les thèmes
     updateButterflyIcons();
     
-    // Écouter les changements de thème via le bouton
+    // Écouter les changements de thème
+    document.addEventListener('themeChanged', updateButterflyIcons);
+    
+    // Écouter les clics sur le toggle de thème
     const themeToggle = document.getElementById('theme-toggle');
     if (themeToggle) {
-        themeToggle.addEventListener('click', function() {
-            // Attendre un peu que le thème change, puis mettre à jour les images
-            setTimeout(updateButterflyIcons, 100);
+        themeToggle.addEventListener('click', function () {
+            setTimeout(updateButterflyIcons, 10);
+        });
+    }
+});
+    }
+    
+    showLoader() {
+        // Le loader est déjà dans le HTML
+        console.log('Loader affiché');
+    }
+    
+    initComponents() {
+        // Les composants sont déjà initialisés dans leurs fichiers respectifs
+        // Ici on peut ajouter des références si nécessaire
+        this.components.theme = window.themeManager;
+    }
+    
+    setupGlobalEvents() {
+        // Gestion des erreurs JavaScript
+        window.addEventListener('error', (e) => {
+            console.error('Erreur JavaScript:', e.error);
+            this.handleError(e.error);
+        });
+        
+        // Gestion des erreurs de promesses
+        window.addEventListener('unhandledrejection', (e) => {
+            console.error('Promesse rejetée:', e.reason);
+            this.handleError(e.reason);
+        });
+        
+        // Gestion du redimensionnement
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                this.handleResize();
+            }, 250);
+        });
+        
+        // Gestion de la visibilité de la page
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                this.onPageHidden();
+            } else {
+                this.onPageVisible();
+            }
+        });
+        
+        // Gestion des raccourcis clavier
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboardShortcuts(e);
         });
     }
     
-    // Écouter les événements personnalisés de changement de thème
-    document.addEventListener('themeChanged', updateButterflyIcons);
-});
-
-// Observer les changements d'attributs sur l'élément HTML pour détecter les changements de thème
-const observer = new MutationObserver(function(mutations) {
-    mutations.forEach(function(mutation) {
-        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
-            console.log('Thème changé, mise à jour des papillons');
-            updateButterflyIcons();
+    setupContactForm() {
+        const contactForm = document.getElementById('contact-form');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                this.handleContactSubmit(e.target);
+            });
+            
+            // Validation en temps réel
+            const inputs = contactForm.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('blur', () => {
+                    this.validateField(input);
+                });
+                
+                input.addEventListener('input', () => {
+                    this.clearFieldError(input);
+                });
+            });
         }
-    });
-});
-
-// Démarrer l'observation
-observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ['data-theme']
-});
+    }
     
-    handleKeyboardShortcuts(e) {
-        // Ctrl/Cmd + D pour toggle dark mode
-        if ((e.ctrlKey || e.metaKey) && e.key === 'd') {
-            e.preventDefault();
-            if (this.components.theme) {
-                this.components.theme.toggleTheme();
+    handleContactSubmit(form) {
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData);
+        
+        // Validation
+        if (!this.validateContactForm(data)) {
+            return;
+        }
+        
+        // Simuler l'envoi du formulaire
+        this.showNotification('Message envoyé avec succès ! Je vous répondrai rapidement.', 'success');
+        form.reset();
+        
+        // Ici vous pouvez ajouter l'envoi réel via une API
+        // this.sendEmailToAPI(data);
+    }
+    
+    validateContactForm(data) {
+        let isValid = true;
+        
+        // Validation de l'email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.email)) {
+            this.showFieldError('email', 'Veuillez entrer une adresse email valide');
+            isValid = false;
+        }
+        
+        // Validation des champs obligatoires
+        const requiredFields = ['name', 'email', 'subject', 'message'];
+        requiredFields.forEach(field => {
+            if (!data[field] || data[field].trim().length < 2) {
+                this.showFieldError(field, 'Ce champ est obligatoire (minimum 2 caractères)');
+                isValid = false;
+            }
+        });
+        
+        return isValid;
+    }
+    
+    validateField(input) {
+        const value = input.value.trim();
+        
+        if (input.hasAttribute('required') && value.length < 2) {
+            this.showFieldError(input.name, 'Ce champ est obligatoire (minimum 2 caractères)');
+            return false;
+        }
+        
+        if (input.type === 'email') {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (value && !emailRegex.test(value)) {
+                this.showFieldError(input.name, 'Veuillez entrer une adresse email valide');
+                return false;
             }
         }
         
-        // Escape pour fermer les modaux ou menus
-        if (e.key === 'Escape') {
-            const openMenu = document.querySelector('.nav__menu.active');
-            if (openMenu) {
-                openMenu.classList.remove('active');
-            }
+        this.clearFieldError(input);
+        return true;
+    }
+    
+    showFieldError(fieldName, message) {
+        const field = document.querySelector(`[name="${fieldName}"]`);
+        if (!field) return;
+        
+        field.classList.add('error');
+        
+        // Retirer l'ancien message d'erreur
+        const existingError = field.parentNode.querySelector('.field-error');
+        if (existingError) {
+            existingError.remove();
         }
-    }
-    
-    handleResize() {
-        console.log('Window resized');
-    }
-    
-    onPageHidden() {
-        document.body.classList.add('page-hidden');
-    }
-    
-    onPageVisible() {
-        document.body.classList.remove('page-hidden');
-    }
-    
-    showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification--${type}`;
-        notification.textContent = message;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'success' ? '#28a745' : type === 'error' ? '#dc3545' : '#17a2b8'};
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 0.5rem;
-            z-index: 1050;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            animation: slideInRight 0.3s ease-out;
+        
+        // Ajouter le nouveau message
+        const errorDiv = document.createElement('div');
+        errorDiv.className = 'field-error';
+        errorDiv.textContent = message;
+        errorDiv.style.cssText = `
+            color: #dc3545;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
         `;
         
-        document.body.appendChild(notification);
+        field.parentNode.appendChild(errorDiv);
+    }
+    
+    clearFieldError(input) {
+        input.classList.remove('error');
+        const errorDiv = input.parentNode.querySelector('.field-error');
+        if (errorDiv) {
+            errorDiv.remove();
+        }
+    }
+    
+    setupEasterEggs() {
+        // Konami Code (↑↑↓↓←→←→BA)
+        let konamiCode = [];
+        const konamiSequence = [
+            'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+            'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+            'KeyB', 'KeyA'
+        ];
+        
+        document.addEventListener('keydown', (e) => {
+            konamiCode.push(e.code);
+            
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                this.activateEasterEgg();
+                konamiCode = [];
+            }
+        });
+        
+        // Click sur le logo 5 fois
+        const logo = document.querySelector('.nav__logo-img');
+        if (logo) {
+            let clickCount = 0;
+            let clickTimer;
+            
+            logo.addEventListener('click', () => {
+                clickCount++;
+                
+                if (clickCount === 1) {
+                    clickTimer = setTimeout(() => {
+                        clickCount = 0;
+                    }, 3000);
+                }
+                
+                if (clickCount === 5) {
+                    clearTimeout(clickTimer);
+                    this.activateSpecialMode();
+                    clickCount = 0;
+                }
+            });
+        }
+    }
+    
+    activateEasterEgg() {
+        // Ajouter une pluie de papillons
+        const butterflyRain = () => {
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    this.createFallingButterfly();
+                }, i * 200);
+            }
+        };
+        
+        butterflyRain();
+        this.showNotification('🦋 Easter Egg activé ! Pluie de papillons ! 🦋', 'info');
+    }
+    
+    createFallingButterfly() {
+        const butterfly = document.createElement('div');
+        butterfly.textContent = '🦋';
+        butterfly.style.cssText = `
+            position: fixed;
+            top: -50px;
+            left: ${Math.random() * window.innerWidth}px;
+            font-size: ${20 + Math.random() * 30}px;
+            z-index: 1000;
+            pointer-events: none;
+            animation: fall ${3 + Math.random() * 2}s linear forwards;
+        `;
+        
+        document.body.appendChild(butterfly);
         
         setTimeout(() => {
-            notification.style.animation = 'slideOutRight 0.3s ease-in forwards';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }, 4000);
+            butterfly.remove();
+        }, 5000);
     }
-}
-
-// Gestion des images papillons pour le thème
-function updateButterflyIcons() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     
-    // Mettre à jour les icônes de section
-    document.querySelectorAll('.section__icon-img').forEach(img => {
-        if (img.getAttribute('data-dark')) {
-            img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
-        }
-    });
-    
-    // Mettre à jour les papillons de la timeline
-    document.querySelectorAll('.timeline__butterfly').forEach(img => {
-        if (img.getAttribute('data-dark')) {
-            img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
-        }
-    });
-}
-
-// Styles additionnels
-const additionalStyles = `
-<style>
-@keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideOutRight {
-    to { transform: translateX(100%); opacity: 0; }
-}
-
-.party-mode {
-    animation: rainbow 2s linear infinite;
-}
-
-@keyframes rainbow {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
-}
-
-.page-hidden .butterfly {
-    animation-play-state: paused;
-}
-</style>
-`;
-
-document.head.insertAdjacentHTML('beforeend', additionalStyles);
-
-// Initialiser l'application
-document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioApp = new PortfolioApp();
-    
-    // Initialiser la gestion des papillons
-    updateButterflyIcons();
-    
-    // Écouter les changements de thème
-    document.addEventListener('themeChanged', updateButterflyIcons);
-    
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            setTimeout(updateButterflyIcons, 10);
-        });
-    }
-});
-
-// Loader - Masquer après chargement complet
-function hideLoader() {
-    const loader = document.getElementById('loader');
-    if (loader) {
-        loader.style.opacity = '0';
-        loader.style.transition = 'opacity 0.5s ease-out';
+    activateSpecialMode() {
+        document.body.classList.add('party-mode');
+        this.showNotification('🎉 Mode fête activé ! 🎉', 'success');
         
-        setTimeout(function() {
-            loader.style.display = 'none';
-        }, 500);
+        // Retirer le mode après 10 secondes
+        setTimeout(() => {
+            document.body.classList.remove('party-mode');
+        }, 10000);
     }
-}
-
-// Démarrer le loader au chargement du DOM
-document.addEventListener('DOMContentLoaded', function() {
-    setTimeout(hideLoader, 1500);
-});
-
-// Backup au cas où DOMContentLoaded ne marche pas
-window.addEventListener('load', function() {
-    setTimeout(hideLoader, 1000);
-});
-
-// Styles additionnels
-const additionalStyles = `
-<style>
-.loader {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-.loader__butterfly {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: butterflybounce 3s ease-in-out infinite;
-}
-
-.butterfly-gif {
-    width: 120px;
-    height: auto;
-    filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
-}
-
-.loader__text {
-    font-size: 1.2rem;
-    font-weight: 500;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    text-align: center;
-    max-width: 300px;
-}
-
-@keyframes butterflybounce {
-    0%, 100% { transform: translateY(0px) scale(1); }
-    50% { transform: translateY(-15px) scale(1.05); }
-}
-
-@keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideOutRight {
-    to { transform: translateX(100%); opacity: 0; }
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; }
-}
-
-.party-mode {
-    animation: rainbow 2s linear infinite;
-}
-
-@keyframes rainbow {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(360deg); }
-}
-
-.page-hidden .butterfly {
-    animation-play-state: paused;
-}
-</style>
-`;
-
-document.head.insertAdjacentHTML('beforeend', additionalStyles);
-
-// Initialiser l'application
-document.addEventListener('DOMContentLoaded', () => {
-    window.portfolioApp = new PortfolioApp();
-    
-    // Initialiser la gestion des papillons
-    updateButterflyIcons();
-    
-    // Écouter les changements de thème
-    document.addEventListener('themeChanged', updateButterflyIcons);
-    
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', () => {
-            setTimeout(updateButterflyIcons, 10);
-        });
-    }
-});
     
     handleKeyboardShortcuts(e) {
         // Ctrl/Cmd + D pour toggle dark mode
@@ -476,25 +477,25 @@ const additionalStyles = `
 
 document.head.insertAdjacentHTML('beforeend', additionalStyles);
 
-// Initialiser l'application
+// Initialisation
 document.addEventListener('DOMContentLoaded', () => {
+    // Gestion des papillons pour les thèmes
+    updateButterflyIcons();
+    
+    // Écouter les changements de thème
+    document.addEventListener('themeChanged', updateButterflyIcons);
+    
+    // Écouter les clics sur le toggle de thème
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function () {
+            setTimeout(updateButterflyIcons, 10);
+        });
+    }
+    
+    // Initialiser l'application
     window.portfolioApp = new PortfolioApp();
 });
-
-document.addEventListener('DOMContentLoaded', function () {
-  function updateButterflyIcons() {
-    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-    // Mettre à jour les icônes de section
-    document.querySelectorAll('.section__icon-img').forEach(img => {
-      img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
-    });
-    // Mettre à jour les papillons de la timeline
-    document.querySelectorAll('.timeline__butterfly').forEach(img => {
-      img.src = isDark ? img.getAttribute('data-dark') : 'assets/img/butterflyPins.png';
-    });
-  }
-  // Initial update
-  updateButterflyIcons();
   // Listen for theme changes
   document.addEventListener('themeChanged', updateButterflyIcons);
   // Or, if you use a button to toggle theme:
@@ -504,4 +505,4 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(updateButterflyIcons, 10);
     });
   }
-});
+
