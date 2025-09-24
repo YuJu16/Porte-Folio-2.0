@@ -17,7 +17,13 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/icon/icon_sans_font.png">
 </head>
-<body>
+<body>    <div id="loader" class="loader">
+        <div class="loader__bg"></div>
+        <div class="loader__content">
+            <img src="assets/img/White Butterflies.gif" alt="Chargement..." class="loader__gif">
+            <p class="loader__text">Chargement du portfolio...</p>
+        </div>
+    </div>
     <!-- Header Navigation -->
     <header class="header">
         <nav class="nav">
@@ -321,33 +327,42 @@
                     <button class="project__tab">Jeu Survival - JSlam</button>
                     <button class="project__tab">Groupie Tracker</button>
                     <button class="project__tab">Portfolio</button>
+                    <button class="project__tab">Cocktail Resident-Evil</button>
                 </div>
                 
                 <div class="projects__content">
                     <div class="project__details project__details--active">
                         <h3 class="project__title">Portfolio Personnel (Beta)</h3>
                         <p class="project__description">
-                            Conception et réalisation de mon premier site web vitrine pour présenter mon parcours et mes projets.
+                            Site web vitrine interactif présentant mon parcours d'étudiante en informatique et mes projets.👉 Projet de fin d’année (1ère année), réalisé en autonomie.
                         </p>
                         <div class="project__context">
-                            <strong>Contexte :</strong> Projet personnel réalisé en autonomie pour appliquer l'ensemble de la chaîne de création web, de la maquette au développement front-end.
+                            <strong>Contexte :</strong> Projet de fin d’année réalisé en autonomie pour démontrer mes compétences techniques et créatives.
                         </div>
                         <div class="project__process">
                             <strong>Processus :</strong>
                             <ul>
-                                <li><strong>Conception UI/UX :</strong> Création d'une maquette visuelle et structurée sur Figma pour définir l'expérience utilisateur.</li>
-                                <li><strong>Intégration :</strong> Développement front-end en HTML5 (structure sémantique) et CSS3 (style et responsive design).</li>
+                                <li><strong>• Conception UI/UX :</strong> Interface kawaii avec animations, GIF et personnages manga.</li>
+                                <li><strong>• Intégration :</strong> Développement HTML5 sémantique et CSS3 responsive pour desktop et mobile.</li>
                             </ul>
                         </div>
                         <div class="project__tech">
                             <strong>Réalisation technique :</strong>
                             <ul>
-                                <li>Design responsive s'adaptant parfaitement au desktop.</li>
-                                <li>Code propre et bien structuré pour une maintenance facile.</li>
+                                <li>Design responsive avec media queries spécifiques.</li>
+                                <li>Code modulaire avec CSS séparé par page et par device.</li>
+                                <li>Intégration d’animations, éléments interactifs et contenus externes.</li>
                             </ul>
+                        </div>                        <div class="project__skills">
+                            <strong>Compétences mobilisées :</strong> UI/UX Design, HTML5, CSS3 avancé, Responsive Design, Intégration multimédia.
                         </div>
-                        <div class="project__skills">
-                            <strong>Compétences mobilisées :</strong> Design d'interface (Figma), Intégration HTML/CSS, Responsive Design.
+                        <div class="project__featured">
+                            <strong>Projets présentés :</strong>
+                            <ul>
+                                <li>Sécurité informatique (Kali Linux, Nmap, tests de vulnérabilités)</li>
+                                <li>Développement web et applications</li>
+                                <li>Projets créatifs et techniques</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -563,18 +578,13 @@
                 
             </div>
         </div>
-    </footer>
-
-    <!-- Scripts -->
+    </footer>    <!-- Scripts -->
+    <script src="js/loader.js"></script>
     <script src="js/theme.js"></script>
+    <script src="js/butterfly-theme.js"></script>
     <script src="js/navigation.js"></script>
     <script src="js/tabs.js"></script>
     <script src="js/animations.js"></script>
     <script src="js/main.js"></script>
 </body>
-</html>
-    <script src="js/animations.js"></script>
-    <script src="js/main.js"></script>
-</body>
-</html>
 </html>

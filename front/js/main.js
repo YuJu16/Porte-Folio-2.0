@@ -1,101 +1,61 @@
 /**
- * Script principal - Version nettoyée et corrigée
+ * Script principal - Gestion des thèmes et animations
  */
-class PortfolioApp {
-    constructor() {
-        this.isLoading = true;
-        this.components = {};
-        
-        this.init();
-    }
+
+// Gestion des images papillons pour le thème
+function updateButterflyIcons() {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     
-    init() {
-        console.log('Initialisation de l\'application...');
-        
-        // Initialiser les composants
-        this.initComponents();
-        
-        // Setup des événements globaux
-        this.setupGlobalEvents();
-        
-        // Setup des Easter eggs
-        this.setupEasterEggs();
-        
-        console.log('Application initialisée avec succès');
-    }
-    
-    initComponents() {
-        this.components.theme = window.themeManager;
-    }
-    
-    setupGlobalEvents() {
-        // Gestion des erreurs JavaScript
-        window.addEventListener('error', (e) => {
-            console.error('Erreur JavaScript:', e.error);
-        });
-        
-        // Gestion des erreurs de promesses
-        window.addEventListener('unhandledrejection', (e) => {
-            console.error('Promesse rejetée:', e.reason);
-        });
-        
-        // Gestion du redimensionnement
-        let resizeTimeout;
-        window.addEventListener('resize', () => {
-            clearTimeout(resizeTimeout);
-            resizeTimeout = setTimeout(() => {
-                this.handleResize();
-            }, 250);
-        });
-        
-        // Gestion de la visibilité de la page
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                this.onPageHidden();
-            } else {
-                this.onPageVisible();
-            }
-        });
-        
-        // Gestion des raccourcis clavier
-        document.addEventListener('keydown', (e) => {
-            this.handleKeyboardShortcuts(e);
-        });
-    }
-    
-    setupEasterEggs() {
-        // Click sur le logo 5 fois
-        const logo = document.querySelector('.nav__logo-img');
-        if (logo) {
-            let clickCount = 0;
-            let clickTimer;
-            
-            logo.addEventListener('click', () => {
-                clickCount++;
-                
-                if (clickCount === 1) {
-                    clickTimer = setTimeout(() => {
-                        clickCount = 0;
-                    }, 3000);
-                }
-                
-                if (clickCount === 5) {
-                    clearTimeout(clickTimer);
-                    this.activateSpecialMode();
-                    clickCount = 0;
-                }
-            });
+    // Mettre à jour les icônes de section
+    document.querySelectorAll('.section__icon-img').forEach(img => {
+        if (img.getAttribute('data-dark')) {
+            img.src = isDark ? img.getAttribute('data-dark') : img.getAttribute('src').replace('butterflylight.png', 'butterflyPins.png');
         }
+    });
+    
+    // Mettre à jour les papillons de la timeline
+    document.querySelectorAll('.timeline__butterfly').forEach(img => {
+        if (img.getAttribute('data-dark')) {
+            img.src = isDark ? img.getAttribute('data-dark') : img.getAttribute('src').replace('butterflylight.png', 'butterflyPins.png');
+        }
+    });
+}
+
+// Initialisation au chargement de la page
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Initialisation des papillons pour le thème');
+    
+    // Mettre à jour les icônes immédiatement
+    updateButterflyIcons();
+    
+    // Écouter les changements de thème via le bouton
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            // Attendre un peu que le thème change, puis mettre à jour les images
+            setTimeout(updateButterflyIcons, 100);
+        });
     }
     
-    activateSpecialMode() {
-        document.body.classList.add('party-mode');
-        this.showNotification('🎉 Mode fête activé ! 🎉', 'success');
-        
-        setTimeout(() => {
-            document.body.classList.remove('party-mode');
-        }, 10000);
-    }
+    // Écouter les événements personnalisés de changement de thème
+    document.addEventListener('themeChanged', updateButterflyIcons);
+});
+
+// Observer les changements d'attributs sur l'élément HTML pour détecter les changements de thème
+const observer = new MutationObserver(function(mutations) {
+    mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+            console.log('Thème changé, mise à jour des papillons');
+            updateButterflyIcons();
+        }
+    });
+});
+
+// Démarrer l'observation
+observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ['data-theme']
+});
     
     handleKeyboardShortcuts(e) {
         // Ctrl/Cmd + D pour toggle dark mode
@@ -220,7 +180,29 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Loader - Masquer après chargement complet
+function hideLoader() {
+    const loader = document.getElementById('loader');
+    if (loader) {
+        loader.style.opacity = '0';
+        loader.style.transition = 'opacity 0.5s ease-out';
+        
+        setTimeout(function() {
+            loader.style.display = 'none';
+        }, 500);
+    }
 }
+
+// Démarrer le loader au chargement du DOM
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(hideLoader, 1500);
+});
+
+// Backup au cas où DOMContentLoaded ne marche pas
+window.addEventListener('load', function() {
+    setTimeout(hideLoader, 1000);
+});
 
 // Styles additionnels
 const additionalStyles = `

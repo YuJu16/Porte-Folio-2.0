@@ -1445,3 +1445,48 @@ Papillons décoratifs
 [data-theme="dark"] .contact__card:hover {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
 }
+
+/* Loader avec spinner CSS */
+.loader {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: linear-gradient(120deg, #ffb6e6 0%, #ffb6b9 50%, #fcd581 100%);
+}
+.loader__bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background: inherit;
+}
+.loader__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.loader__gif {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));
+  margin-bottom: 1.5rem;
+}
+.loader__text {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  margin: 0;
+  font-family: 'Campton', 'Inter', sans-serif;
+}
