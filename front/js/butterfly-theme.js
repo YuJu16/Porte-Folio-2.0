@@ -6,8 +6,6 @@
 function updateButterflyIcons() {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     console.log('Mise à jour des papillons - Mode sombre:', isDark);
-    
-    // Mettre à jour les icônes de section
     document.querySelectorAll('.section__icon-img').forEach(img => {
         const darkSrc = img.getAttribute('data-dark');
         if (darkSrc) {
@@ -19,8 +17,6 @@ function updateButterflyIcons() {
             console.log('Image mise à jour:', img.src);
         }
     });
-    
-    // Mettre à jour les papillons de la timeline
     document.querySelectorAll('.timeline__butterfly').forEach(img => {
         const darkSrc = img.getAttribute('data-dark');
         if (darkSrc) {

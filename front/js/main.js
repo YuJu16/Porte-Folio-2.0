@@ -1,5 +1,5 @@
 /**
- * Script principal - Gestion des thèmes et fonctionnalités de base
+ * Script principal - Gestion des thèmes et animations
  */
 
 // Gestion des images papillons pour le thème
@@ -19,22 +19,22 @@ function updateButterflyIcons() {
     });
 }
 
-// Initialisation
-document.addEventListener('DOMContentLoaded', () => {
-    // Gestion des papillons pour les thèmes
-    updateButterflyIcons();
-    
-    // Écouter les changements de thème
-    document.addEventListener('themeChanged', updateButterflyIcons);
-    
-    // Écouter les clics sur le toggle de thème
-    const themeToggle = document.getElementById('theme-toggle');
-    if (themeToggle) {
-        themeToggle.addEventListener('click', function () {
-            setTimeout(updateButterflyIcons, 10);
-        });
+// Classe principale de l'application
+class PortfolioApp {
+    constructor() {
+        this.isLoading = true;
+        this.components = {};
+        
+        this.init();
     }
-});
+    
+    init() {
+        this.showLoader();
+        this.initComponents();
+        this.setupGlobalEvents();
+        this.setupContactForm();
+        this.setupEasterEggs();
+        this.finishLoading();
     }
     
     showLoader() {

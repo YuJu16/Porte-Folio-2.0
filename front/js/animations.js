@@ -21,14 +21,11 @@ class AnimationManager {
     }
     
     setupScrollAnimations() {
-        // Observer pour les animations d'apparition
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-in');
                 } else {
-                    // Optionnel : relancer l'animation quand l'élément sort du viewport
-                    // entry.target.classList.remove('animate-in');
                 }
             });
         }, this.observerOptions);
@@ -59,10 +56,10 @@ class AnimationManager {
             const scrolled = window.pageYOffset;
             const rate = scrolled * -0.5;
             
-            parallaxElements.forEach((element, index) => {
-                const speed = 0.3 + (index * 0.1); // Vitesses différentes pour chaque papillon
-                element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.01}deg)`;
-            });
+            // parallaxElements.forEach((element, index) => {
+            //     const speed = 0.3 + (index * 0.1); // Vitesses différentes pour chaque papillon
+            //     element.style.transform = `translateY(${scrolled * speed}px) rotate(${scrolled * 0.01}deg)`;
+            // });
         });
     }
     
@@ -94,7 +91,6 @@ class AnimationManager {
                 i++;
             } else {
                 clearInterval(timer);
-                // Faire clignoter le curseur quelques fois puis le retirer
                 setTimeout(() => {
                     element.style.borderRight = 'none';
                     element.style.whiteSpace = 'normal';
@@ -104,7 +100,6 @@ class AnimationManager {
     }
     
     setupCardHoverEffects() {
-        // Exclure les timeline__content des effets hover
         const cards = document.querySelectorAll('.skill__card');
         
         cards.forEach(card => {
@@ -131,19 +126,19 @@ class AnimationManager {
     setupButterflyAnimations() {
         const butterflies = document.querySelectorAll('.butterfly');
         
-        butterflies.forEach((butterfly, index) => {
-            // Animation aléatoire pour chaque papillon
-            const animationDuration = 8 + Math.random() * 4; // 8-12 secondes
-            const delay = Math.random() * 2; // 0-2 secondes de délai
+        // butterflies.forEach((butterfly, index) => {
+
+        //     const animationDuration = 8 + Math.random() * 4; // 8-12 secondes
+        //     const delay = Math.random() * 2; // 0-2 secondes de délai
             
-            butterfly.style.animationDuration = `${animationDuration}s`;
-            butterfly.style.animationDelay = `${delay}s`;
+        //     butterfly.style.animationDuration = `${animationDuration}s`;
+        //     butterfly.style.animationDelay = `${delay}s`;
             
-            // Ajouter une animation de battement d'ailes
-            butterfly.addEventListener('animationiteration', () => {
-                butterfly.style.filter = `hue-rotate(${Math.random() * 60}deg)`;
-            });
-        });
+        //     // Ajouter une animation de battement d'ailes
+        //     butterfly.addEventListener('animationiteration', () => {
+        //         butterfly.style.filter = `hue-rotate(${Math.random() * 60}deg)`;
+        //     });
+        // });
     }
     
     // Fonction utilitaire pour créer des animations personnalisées
@@ -160,26 +155,26 @@ class AnimationManager {
     }
     
     // Animation de compteur pour les statistiques (si besoin)
-    animateCounter(element, start = 0, end, duration = 2000) {
-        const startTime = performance.now();
+    // animateCounter(element, start = 0, end, duration = 2000) {
+    //     const startTime = performance.now();
         
-        const updateCounter = (currentTime) => {
-            const elapsed = currentTime - startTime;
-            const progress = Math.min(elapsed / duration, 1);
+    //     const updateCounter = (currentTime) => {
+    //         const elapsed = currentTime - startTime;
+    //         const progress = Math.min(elapsed / duration, 1);
             
-            // Fonction d'easing
-            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-            const current = Math.floor(start + (end - start) * easeOutQuart);
+    //         // Fonction d'easing
+    //         const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+    //         const current = Math.floor(start + (end - start) * easeOutQuart);
             
-            element.textContent = current;
+    //         element.textContent = current;
             
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            }
-        };
+    //         if (progress < 1) {
+    //             requestAnimationFrame(updateCounter);
+    //         }
+    //     };
         
-        requestAnimationFrame(updateCounter);
-    }
+    //     requestAnimationFrame(updateCounter);
+    // }
 }
 
 // CSS pour les animations (à ajouter dynamiquement)
